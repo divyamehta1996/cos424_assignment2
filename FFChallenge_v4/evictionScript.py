@@ -27,12 +27,15 @@ X_train, X_test, y_train, y_test = train_test_split(trainX, trainY, test_size=0.
 clf = GaussianNB()
 clf.fit(X_train, y_train)
 y_predict = clf.predict_proba(X_test)[:, 1]
-predictions = clf.predict_proba(testX)[:, 1]
 # print y_test.shape
 # print y_predict.shape
 clf_score = brier_score_loss(y_test, y_predict)
 # b = brier_score_loss(y_test, y_predict) 
 print("GB: %1.5f" % clf_score)
+
+clfFull = GaussianNB()
+clfFull.fit(trainX, trainY)
+predictions = clfFull.predict_proba(testX)[:, 1]
 
 # clf = svm.SVC(probability=True)
 # clf.fit(X_train, y_train)
